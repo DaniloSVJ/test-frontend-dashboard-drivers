@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import Modal from 'react-modal';
-import api from '../service/api'
+import api from '../../service/api'
 import { RiFilterLine, RiEdit2Fill, RiDeleteBin5Line } from "react-icons/ri"
 import { IoMdClose } from "react-icons/io"
 import './UserList.css'
