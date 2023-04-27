@@ -19,15 +19,23 @@ interface IDriver {
 
 
 Modal.setAppElement("#root")
+
 function UserList() {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [modalIsOpenFilter, setIsOpenFilter] = useState(false);
-  const [idDriver, setIdDriver] = useState("")
+
+  const [idDriver,setIdDriver] = useState("")
+
   const [driverData, setdriverData] = useState<IDriver[]>([])
   const [filterName, setFilterName] = useState("")
   const [filterLicense, setFilterLicense] = useState("")
   const [filterLicense_plate, setFilterLicense_plate] = useState("")
-
+  
+  const [name, setName] = useState("");
+  const [birth_date, setBirth_date] = useState("");
+  const [license, setLicense] = useState("");
+  const [car_model, setCar_model] = useState("");
+  const [license_plate, setLicense_plate] = useState("");
   function openModal() {
     setIsOpen(true);
   }
@@ -85,33 +93,55 @@ function UserList() {
       drivers = await api.get(`drivers/search?name=${filterName}&license=${filterLicense}`)
 
     }
-    console.log(filterName)
-    console.log(filterLicense)
-    console.log(filterLicense_plate)
-    console.log(drivers.data)
+   
     setdriverData(drivers.data)
 
   }
 
 
   async function deleteDriver(id:string) {
-     await api.delete(`/drivers/${id}`)
-     
-     const drivers = api.get('drivers')
+    if ( window.confirm ('Confirmar exclusão')){
+      await api.delete(`/drivers/${id}`)
+    } 
+   
+    const drivers = api.get('drivers')
 
-     setdriverData((await drivers).data)
+    setdriverData((await drivers).data)
 
   }
-    
+
+  async function feedform(id:string) {
+    const {data} = await api.get('drivers')
+
+    const driverAll = await data
+
+    const driver: IDriver =  await driverAll.find((d:any)=>d.id===id)
+
+    setName(driver.name)
+    setBirth_date(driver.birth_date)
+    setLicense(driver.license)
+    setCar_model(driver.car_model)
+    setLicense_plate(driver.license_plate)
+    setIdDriver(id)
+  }
   
+  async function updateDriver(id:string) {
+      await api.put(`drivers/${id}`,{
+        name,
+        birth_date,
+        license,
+        car_model,
+        license_plate
+      })
+      const {data} =  await api.get('drivers')
 
-
-
+      setdriverData(data)
+  }
+    
   useEffect(() => {
 
     async function load() {
       const driverAll = await api.get('drivers')
-      //setdriverData(driverAll)
 
       setdriverData(driverAll.data)
     }
@@ -165,11 +195,10 @@ function UserList() {
         <div id="divopenfiltroModal">
           <button id="openfiltroModal" onClick={openModalFilter}>Abrir Filtro</button>
         </div>
-        <div>
+        <div id="div_conteudo_table">
           <table>
             <thead>
               <tr>
-
                 <th>Nome</th>
                 <th>Nascimento</th>
                 <th>Nº Carteira</th>
@@ -183,13 +212,12 @@ function UserList() {
 
               {driverData.map((driver) => (
                 <tr key={driver.id}>
-
                   <td>{driver.name}</td>
                   <td>{driver.birth_date}</td>
                   <td>{driver.license}</td>
                   <td>{driver.car_model}</td>
                   <td>{driver.license_plate}</td>
-                  <td className="iconestable"><button className='buttonTd' onClick={() => (openModal(), setIdDriver(String(driver.id)))}><RiEdit2Fill color='#66CDAA' size={12} /></button></td>
+                  <td className="iconestable"><button className='buttonTd' onClick={() => ( feedform(String(driver.id)),openModal())}><RiEdit2Fill color='#66CDAA' size={12} /></button></td>
                   <td className="iconestable"><button className='buttonTd' onClick={()=>deleteDriver(String(driver.id))}><RiDeleteBin5Line color='#FA8072' size={12} /></button></td>
                 </tr>
               ))}
@@ -197,7 +225,7 @@ function UserList() {
           </table>
         </div>
       </div>
-
+            
 
       <Modal
         isOpen={modalIsOpenFilter}
@@ -270,6 +298,9 @@ function UserList() {
                 className="form-input-edit"
                 type="text"
                 id="name-edit"
+                value={name}
+                onChange={(event) => setName(event.target.value)}
+                
               />
             </div>
 
@@ -279,7 +310,9 @@ function UserList() {
                 className="form-input-edit"
                 type="text"
                 id="nascimento-edit"
-
+                value={birth_date}
+                onChange={(event) => setBirth_date(event.target.value)}
+                
               />
             </div>
             <div >
@@ -288,6 +321,9 @@ function UserList() {
                 className="form-input-edit"
                 type="text"
                 id="n_carteira_edit"
+                value={license}
+                onChange={(event) => setLicense(event.target.value)}
+                
               />
             </div>
 
@@ -298,7 +334,9 @@ function UserList() {
                 className="form-input-edit"
                 type="text"
                 id="modelo_carro_edit"
-
+                value={car_model}
+                onChange={(event) => setCar_model(event.target.value)}
+                
               />
             </div>
             <div >
@@ -306,13 +344,16 @@ function UserList() {
               <input
                 className="form-input-edit"
                 type="text"
-                id="placa_carro"
-
+                id="placa_carro_edit"
+                value={license_plate}
+                onChange={(event) => setLicense_plate(event.target.value)}
+                
               />
             </div>
             <button
               className="form-button"
-              type="submit">
+              onClick={()=>updateDriver(idDriver)}
+            >
               Salvar
             </button>
           </div>

@@ -43,6 +43,7 @@
   },
   "devDependencies": {
     "@types/react-modal": "^3.16.0",
+    
     "@types/jest": "^27.5.2",
     "@types/node": "^16.18.24",
     "@types/react": "^18.2.0",

@@ -1,66 +1,123 @@
-.conteudo{
+.conteudo {
+  margin-top: 20px;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  width: 100%;
+
   
 
 }
-.form-label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-    color: #fff;
 
+#form_cadastro{
+  border-radius: 4px;
+  border: 1px solid #fff;
+  padding: 15px;
+}
+
+h1{
+  font-size: 15px;
+  margin-top: 15px;
+  margin-bottom: 30px;
+}
+.form-label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #fff;
+
+}
+
+#divname {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#name {
+  width: 465px;
+}
+
+.form-input {
+  padding: 8px;
+  color: #fff;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+}
+
+.form-button {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+#div_com_info_pessoais {
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  justify-content: space-between;
+
+}
+
+.div_info_pessoais {
+  margin-right: 20px;
+}
+
+
+#div_com_info_carro {
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  justify-content: space-between;
+}
+
+.div_info_carro {
+  margin-right: 20px;
+}
+
+#placa_carro, 
+#modelo_carro, 
+#n_carteira, 
+#nascimento {
+  width: 200px;
+}
+
+@media screen and (max-width: 647px) {
+  #name{
+    width:225px;
   }
-  #divname{
+  #divname {
     display: flex;
     flex-direction: column;
-    align-items: center;  
-    width: 100%;
-  }
-  #name{
-    width: 465px;
-  }
-  .form-input {
-    display: block;
-   
-    padding: 8px;
-    color: #fff;
-    font-size: 16px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-    margin-bottom: 20px;
+    align-items: center;
+    justify-content: start;
   }
   
-  .form-button {
-    background-color: #4caf50;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  .div_com_info_pessoais{
+  #div_com_info_pessoais {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-
-  }
-  .div_info_pessoais{
-    margin-right: 20px;
-  }
+    justify-content: center;
+    margin : 20px;
   
+  }
 
-  .div_com_info_carro{
+  #div_com_info_carro {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
+    margin : 20px;
   }
-  .div_info_carro{
-    margin-right: 20px;
-  }
+}

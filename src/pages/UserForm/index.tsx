@@ -1,24 +1,19 @@
-import React from "react";
+import {useState,FormEvent} from "react";
 import api from "../service/api"
 import './UserForm.css'
 
 
 function UserForm() {
 
-  const [name, setName] = React.useState("");
-  const [birth_date, setBirth_date] = React.useState("");
-  const [license, setLicense] = React.useState("");
-  const [car_model, setCar_model] = React.useState("");
-  const [license_plate, setLicense_plate] = React.useState("");
+  const [name, setName] = useState("");
+  const [birth_date, setBirth_date] = useState("");
+  const [license, setLicense] = useState("");
+  const [car_model, setCar_model] = useState("");
+  const [license_plate, setLicense_plate] = useState("");
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(">>>>>>>>>")
-    console.log( name)
-    console.log(birth_date)
-      console.log(license)
-        console.log(car_model)
-          console.log(license_plate)
+
     await api.post('drivers',
       {
         name,
@@ -28,7 +23,6 @@ function UserForm() {
         license_plate,
       }
     )
-    console.log("<<<<<<<<<<<<<<<")
     setName("");
     setBirth_date("");
     setLicense("");
@@ -40,11 +34,11 @@ function UserForm() {
 
 
   return (
-    <div>
-      <h1>Cadastro de Usuário</h1>
-      <form onSubmit={handleSubmit}>
-        <div className="conteudo">
+    <div className="conteudo">
 
+      <form id="form_cadastro" onSubmit={handleSubmit}>
+        <div >
+          <h1>CADASTRO DE MOTORISTAS</h1>
           <div id="divname">
             <div>
               <label className="form-label" htmlFor="name">Nome:</label>
@@ -53,11 +47,13 @@ function UserForm() {
                 type="text"
                 id="name"
                 value={name}
+                placeholder="Nome do Motorista"
                 onChange={(event) => setName(event.target.value)}
+                required
               />
             </div>
           </div>
-          <div className="div_com_info_pessoais">
+          <div id="div_com_info_pessoais">
             <div className="div_info_pessoais">
               <label className="form-label" htmlFor="email">Data de Nascimento:</label>
               <input
@@ -65,7 +61,9 @@ function UserForm() {
                 type="text"
                 id="nascimento"
                 value={birth_date}
+                placeholder="__/__/____"
                 onChange={(event) => setBirth_date(event.target.value)}
+                required
               />
             </div>
             <div className="div_info_pessoais">
@@ -74,20 +72,25 @@ function UserForm() {
                 className="form-input"
                 type="text"
                 id="n_carteira"
+                placeholder="Carteira de Motorista"
                 value={license}
                 onChange={(event) => setLicense(event.target.value)}
+                required
               />
             </div>
           </div>
-          <div className="div_com_info_carro">
+          <div id="div_com_info_carro">
             <div className="div_info_carro">
               <label className="form-label" htmlFor="email">Modelo Carro:</label>
               <input
                 className="form-input"
                 type="text"
                 id="modelo_carro"
+                placeholder="Modelo do Carro"
+
                 value={car_model}
                 onChange={(event) => setCar_model(event.target.value)}
+                required
               />
             </div>
             <div className="div_info_carro">
@@ -96,16 +99,23 @@ function UserForm() {
                 className="form-input"
                 type="text"
                 id="placa_carro"
+                placeholder="Placa do Carro"
+
                 value={license_plate}
                 onChange={(event) => setLicense_plate(event.target.value)}
+                required
               />
+
             </div>
+
           </div>
           <button
             className="form-button"
-            type="submit">
-            Salvar
+            type="submit"
+          >
+            Cadastrar
           </button>
+
         </div>
       </form>
     </div>

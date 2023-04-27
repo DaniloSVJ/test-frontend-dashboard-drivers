@@ -27,10 +27,11 @@ div {
 
 table {
   background-color: #333;
-  border-collapse: collapse;
   width: 100%;
   color: #f2f2f2;
-  border: "solid transparent";
+  border:none;
+  border-spacing: 0px;
+  border-collapse: collapse;
 }
 
 th,
@@ -39,7 +40,9 @@ td {
   text-align: left;
   padding: 8px;
   color: #f2f2f2;
-  border: "solid transparent";
+  border:none;
+  border-spacing: 0px;
+  border-collapse: collapse;
 
 }
 
@@ -112,11 +115,11 @@ tr:nth-child(even) {
   font-size: 16px;
 }
 
-#placa_carro,
+
 #modelo_carro_edit,
 #n_carteira_edit,
 #nascimento-edit,
-#placa_carro {
+#placa_carro_edit {
   width: 200px;
 }
 
@@ -152,9 +155,9 @@ button {
   background-color: #333;
   position: fixed;
   top: 10vw;
-  left: 10px;
+  left:25vw;
 
-  width: 39%;
+  width:50%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -218,7 +221,7 @@ h2 {
 }
 @media screen and (max-width: 800px) {
   .modal-overlay {
-    margin-top: 20vh;
+    
     top: 10vw;
     left: 10px;
     
@@ -229,11 +232,11 @@ h2 {
 
   }
 
-  #placa_carro,
+  #placa_carro_edit,
   #modelo_carro_edit,
   #n_carteira_edit,
-  #nascimento-edit,
-  #placa_carro {
+  #nascimento-edit
+   {
     width: 100%;
   }
 
@@ -263,6 +266,9 @@ table{
   }
 }
 @media screen and (max-width: 647px) {
+  #div_conteudo_table {
+    overflow-x: scroll;
+  }
   #divopenfiltroModal{
     display: flex;
     text-align: start;
