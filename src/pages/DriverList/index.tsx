@@ -20,7 +20,7 @@ interface IDriver {
 
 Modal.setAppElement("#root")
 
-function UserList() {
+function DriverList() {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [modalIsOpenFilter, setIsOpenFilter] = useState(false);
 
@@ -364,4 +364,4 @@ function UserList() {
   );
 }
 
-export default UserList;
+export default DriverList;

@@ -1,9 +1,9 @@
 import {useState,FormEvent} from "react";
 import api from "../../service/api"
-import './UserForm.css'
+import './DriverForm.css'
 
 
-function UserForm() {
+function DriverForm() {
 
   const [name, setName] = useState("");
   const [birth_date, setBirth_date] = useState("");
@@ -122,4 +122,4 @@ function UserForm() {
   );
 }
 
-export default UserForm;
+export default DriverForm;

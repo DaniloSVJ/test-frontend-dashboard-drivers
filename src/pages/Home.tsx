@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Link ,Routes} from "react-router-dom";
-import UserList from "./UserList";
-import UserForm from "./UserForm";
+import DriverList from "./DriverList";
+import DriverForm from "./DriverForm";
 
 function Home() {
   return (
@@ -19,8 +19,8 @@ function Home() {
           </ul>
         </nav>
         <Routes>
-        <Route path="/" element={<UserList/>} />
-        <Route path="/cadastrar-motoristas" element={<UserForm/>} />
+        <Route path="/" element={<DriverList/>} />
+        <Route path="/cadastrar-motoristas" element={<DriverForm/>} />
         
         </Routes>
       </div>
